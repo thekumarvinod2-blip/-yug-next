@@ -163,6 +163,7 @@
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
+      <a href="#achievements">Achievements</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -208,6 +209,13 @@
     </div>
   </section>
 
+  <section id="achievements">
+    <div class="wrap">
+      <h2 class="reveal">Achievements</h2>
+      <ul class="achievements" id="achList"></ul>
+    </div>
+  </section>
+
   <section id="contact">
     <div class="wrap">
       <h2 class="reveal">Let's make something worth watching.</h2>
@@ -234,28 +242,31 @@
 const profile = {
   name: "Vinod Kumar Mundotiya",
   role: "Website Developer & Video Editor",
-  intro: "Beginner, but want to be passionate and skilled in web design and development.",
+  intro: "I turn raw footage and ideas into clean, eye-catching stories and websites.",
   photo: "",            // put your photo file name here, e.g. "me.jpg" (leave "" to show your initial)
   about: [
-    "Hi, I'm Vinod Kumar Mundotiya. I edit videos and photos, and I enjoy making reels, short films and edited portraits.",
-    "I am now learning web design and building my first portfolio website."
+    "Hi, I'm Vinod. I edit videos and photos, and I am learning to build websites.",
+    "I enjoy making reels, short films and edited portraits, and now I design and build my own web pages too."
   ],
   skills: [
     { name: "Video Editing", level: 85, note: "Cutting, transitions, colour grading, sound sync." },
-    { name: "Web Development", level: 75, note: "HTML, CSS, JavaScript, responsive design." },
+    { name: "Photo Editing", level: 80, note: "Retouching, colour correction, creative edits." },
     { name: "Reels & Shorts", level: 75, note: "Fast, vertical, social-media-ready videos." },
-    { name: "Tools I use", level: 70, note: "Instagram Edits, CapCut, VS Code, Claude, ChatGPT" }
+    { name: "Web Development", level: 55, note: "HTML, CSS, JavaScript and hosting with GitHub Pages." }
   ],
   projects: [
-    { title: "Project One", type: "Video", desc: "In this video, I showcase my editing skills, when we had our first day in college", tags: ["Editing", "Colour grading"], image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9Wzxq17f05r301fFZhnGDYMsIDv0fAsFwYc24rr5KIUKjHNb8KryjEsta&s=10", link: "https://www.instagram.com/reel/Dcbj64DsxpH/?gwpx=MTNidWp6ZjU2eDdxcg==" },
-    { title: "Project Two", type: "Photo", desc: "Beginning the new journey of web development", tags: ["Retouching"], image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1UWfXEdJbmsOvJQN6FEwQ8iANypE86fMJpGbWMeQkMw&s=10", link: "https://claude.ai/chat/d07eebb1-ba06-41e7-a544-d3f7cc720a98" },
-    { title: "Project Three", type: "Reel", desc: "Showcasing the Reel editing of Navrang'26 at MANIT Bhopal", tags: ["Reels", "Motion"], image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1Jg4mpOZ0xcI9_TOtKIJrrV22L_jhB1TUnG-LRTpgKA&s=10", link: "https://www.instagram.com/reel/DeYp9wLRNRr/?jplx=NDlvd3BxOTQ4N2Nx" }
+    { title: "Project One", type: "Video", desc: "Write 1-2 lines: what this video is and what you did.", tags: ["Editing", "Colour grading"], image: "", link: "https://example.com" },
+    { title: "Project Two", type: "Photo", desc: "Write 1-2 lines: what this photo edit is about.", tags: ["Retouching"], image: "", link: "https://example.com" },
+    { title: "Project Three", type: "Reel", desc: "Write 1-2 lines about this reel or short.", tags: ["Reels", "Motion"], image: "", link: "https://example.com" }
   ],
-
+  achievements: [
+    { title: "Add your achievement here", detail: "Where / when, for example: College event video, 2026" },
+    { title: "Add another achievement", detail: "Certificate, competition, client work, followers..." }
+  ],
   contact: [
-    { label: "Email me", url: "thekumarvinod2@gmail.com" },
-    { label: "Instagram", url: "https://instagram.com/vinodd_108" },
-    { label: "LinkedIn", url: "https://linkedin.com/in/vinodkumar1008" }
+    { label: "Email me", url: "mailto:you@example.com" },
+    { label: "Instagram", url: "https://instagram.com/yourname" },
+    { label: "LinkedIn", url: "https://linkedin.com/in/yourname" }
   ]
 };
 /* ============== END OF EDIT BLOCK ============== */
