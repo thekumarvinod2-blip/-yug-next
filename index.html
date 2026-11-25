@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio | Video &amp; Photo Editor</title>
+<meta name="description" content="Personal portfolio of a video and photo editor: skills, projects and contact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F2F4F8;
+    --white: #FFFFFF;
+    --ink: #1D2433;
+    --muted: #55607A;
+    --blue: #3B5BDB;
+    --amber: #F2A93B;
+    --teal: #1F9E8F;
+    --line: #D5DAE5;
+    --radius: 14px;
+    --head: "Bricolage Grotesque", "Trebuchet MS", Arial, sans-serif;
+    --body: "Source Sans 3", "Segoe UI", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 18px; line-height: 1.6; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+  .wrap { width: min(1100px, 92%); margin-inline: auto; }
+
+  /* Header */
+  header.site { position: sticky; top: 0; z-index: 10; background: rgba(242,244,248,.94); border-bottom: 1px solid var(--line); }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; padding-block: 14px; gap: 16px; flex-wrap: wrap; }
+  .logo { font-family: var(--head); font-weight: 800; font-size: 1.2rem; text-decoration: none; }
+  nav { display: flex; gap: 22px; flex-wrap: wrap; }
+  nav a { text-decoration: none; color: var(--muted); font-weight: 600; font-size: .95rem; }
+  nav a:hover { color: var(--blue); }
+
+  /* Hero */
+  .hero { padding: 72px 0 56px; }
+  .hero h1 { font-family: var(--head); font-weight: 800; font-size: clamp(2.6rem, 8vw, 5.4rem); line-height: 1.02; letter-spacing: -0.02em; max-width: 14ch; }
+  .hero p.lead { margin-top: 22px; max-width: 52ch; color: var(--muted); font-size: 1.15rem; }
+  .cta { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: 12px 22px; border-radius: 999px; font-weight: 600; text-decoration: none; border: 2px solid var(--ink); }
+  .btn.primary { background: var(--ink); color: var(--white); }
+  .btn.primary:hover { background: var(--blue); border-color: var(--blue); }
+  .btn.ghost:hover { background: var(--white); }
+
+  /* Timeline (the memorable element) */
+  .timeline { margin-top: 56px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 18px 22px; position: relative; overflow: hidden; }
+  .timeline .ruler { display: flex; justify-content: space-between; color: var(--muted); font-size: .8rem; margin-bottom: 10px; }
+  .track { display: flex; gap: 6px; margin-bottom: 8px; }
+  .clip { border-radius: 8px; padding: 10px 12px; color: var(--white); font-weight: 600; font-size: .95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .clip.blue { background: var(--blue); }
+  .clip.amber { background: var(--amber); color: var(--ink); }
+  .clip.teal { background: var(--teal); }
+  .playhead { position: absolute; top: 0; bottom: 0; left: 18px; width: 2px; background: #E5484D; animation: scrub 4.5s ease-in-out 1 forwards; }
+  .playhead::before { content: ""; position: absolute; top: 0; left: -6px; width: 14px; height: 14px; background: #E5484D; border-radius: 3px; }
+  @keyframes scrub { from { left: 18px; } to { left: calc(100% - 20px); } }
+
+  /* Sections */
+  section { padding: 64px 0; border-top: 1px solid var(--line); }
+  section h2 { font-family: var(--head); font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.01em; margin-bottom: 8px; }
+  section .sub { color: var(--muted); margin-bottom: 32px; max-width: 60ch; }
+  .about-grid { display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: start; }
+  .photo { aspect-ratio: 4/5; border-radius: var(--radius); background: linear-gradient(160deg, var(--blue), var(--teal)); display: grid; place-items: center; color: var(--white); font-family: var(--head); font-size: 4rem; font-weight: 800; overflow: hidden; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .about-text p + p { margin-top: 14px; }
+
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .skill { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+  .skill h3 { font-family: var(--head); font-size: 1.15rem; margin-bottom: 6px; }
+  .skill p { color: var(--muted); font-size: 1rem; }
+  .bar { height: 8px; background: var(--paper); border-radius: 99px; margin-top: 14px; overflow: hidden; }
+  .bar span { display: block; height: 100%; background: var(--blue); border-radius: 99px; }
+
+  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .project { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+  .thumb { aspect-ratio: 16/9; background: var(--ink); color: var(--white); display: grid; place-items: center; font-family: var(--head); font-size: 1.4rem; position: relative; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .project .body { padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .project h3 { font-family: var(--head); font-size: 1.25rem; }
+  .project p { color: var(--muted); font-size: 1rem; }
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tags span { font-size: .8rem; padding: 3px 10px; border-radius: 99px; background: var(--paper); color: var(--muted); }
+  .project a.link { margin-top: auto; font-weight: 600; color: var(--blue); }
+
+  .achievements { list-style: none; display: grid; gap: 14px; }
+  .achievements li { background: var(--white); border-left: 5px solid var(--amber); border-radius: 8px; padding: 14px 18px; }
+  .achievements small { color: var(--muted); display: block; }
+
+  .contact-links { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: .95rem; }
+
+  @media (max-width: 760px) {
+    body { font-size: 17px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .photo { max-width: 240px; }
+    .hero { padding-top: 44px; }
+    nav { gap: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .playhead { animation: none; left: calc(100% - 20px); }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="#top" id="logo"></a>
+    <nav aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <h1 id="heroName"></h1>
+      <p class="lead" id="heroLead"></p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See my work</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+      <div class="timeline" aria-hidden="true">
+        <div class="ruler"><span>00:00</span><span>00:15</span><span>00:30</span><span>00:45</span><span>01:00</span></div>
+        <div class="track" id="trackTop"></div>
+        <div class="track" id="trackBottom"></div>
+        <div class="playhead"></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="wrap">
+      <h2>About me</h2>
+      <div class="about-grid">
+        <div class="photo" id="photo"></div>
+        <div class="about-text" id="aboutText"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <p class="sub">What I work with and how comfortable I am with each.</p>
+      <div class="skills" id="skillsList"></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <p class="sub">A few pieces of my work. Open any one to see it in full.</p>
+      <div class="projects" id="projectsList"></div>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <div class="wrap">
+      <h2>Achievements</h2>
+      <ul class="achievements" id="achList"></ul>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <p class="sub">Have a video or photo project? Send me a message.</p>
+      <div class="contact-links" id="contactLinks"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p id="footerText"></p>
+    <p>Built with the help of AI: Claude (by Anthropic) was used to write the website code. The content, design choices and work samples are my own.</p>
+  </div>
+</footer>
+
+<script>
+/* =====================================================
+   EDIT ONLY THIS BLOCK. Replace the text between quotes
+   with your own details, then save the file.
+   ===================================================== */
+const profile = {
+  name: "Vinod Kumar Mundotiya",
+  role: "Website Developer & Video Editor",
+  intro: "Beginner, but want to be passionate and skilled in web design and development.",
+  photo: "",            // put your photo file name here, e.g. "me.jpg" (leave "" to show your initial)
+  about: [
+    "Hi, I'm Vinod Kumar Mundotiya. I edit videos and photos, and I enjoy making reels, short films and edited portraits.",
+    "I am now learning web design and building my first portfolio website."
+  ],
+  skills: [
+    { name: "Video Editing", level: 85, note: "Cutting, transitions, colour grading, sound sync." },
+    { name: "Web Development", level: 75, note: "HTML, CSS, JavaScript, responsive design." },
+    { name: "Reels & Shorts", level: 75, note: "Fast, vertical, social-media-ready videos." },
+    { name: "Tools I use", level: 70, note: "Instagram Edits, CapCut, VS Code, Claude, ChatGPT" }
+  ],
+  projects: [
+    { title: "Project One", type: "Video", desc: "In this video, I showcase my editing skills, when we had our first day in college", tags: ["Editing", "Colour grading"], image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9Wzxq17f05r301fFZhnGDYMsIDv0fAsFwYc24rr5KIUKjHNb8KryjEsta&s=10", link: "https://www.instagram.com/reel/Dcbj64DsxpH/?gwpx=MTNidWp6ZjU2eDdxcg==" },
+    { title: "Project Two", type: "Photo", desc: "Beginning the new journey of web development", tags: ["Retouching"], image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1UWfXEdJbmsOvJQN6FEwQ8iANypE86fMJpGbWMeQkMw&s=10", link: "https://claude.ai/chat/d07eebb1-ba06-41e7-a544-d3f7cc720a98" },
+    { title: "Project Three", type: "Reel", desc: "Showcasing the Reel editing of Navrang'26 at MANIT Bhopal", tags: ["Reels", "Motion"], image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1Jg4mpOZ0xcI9_TOtKIJrrV22L_jhB1TUnG-LRTpgKA&s=10", link: "https://www.instagram.com/reel/DeYp9wLRNRr/?jplx=NDlvd3BxOTQ4N2Nx" }
+  ],
+
+  contact: [
+    { label: "Email me", url: "thekumarvinod2@gmail.com" },
+    { label: "Instagram", url: "https://instagram.com/vinodd_108" },
+    { label: "LinkedIn", url: "https://linkedin.com/in/vinodkumar1008" }
+  ]
+};
+/* ============== END OF EDIT BLOCK ============== */
+
+(function render() {
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  document.title = profile.name + " | " + profile.role;
+  $("logo").textContent = profile.name;
+  $("heroName").textContent = profile.name;
+  $("heroLead").textContent = profile.role + ". " + profile.intro;
+  $("footerText").textContent = "\u00A9 " + new Date().getFullYear() + " " + profile.name;
+
+  // Timeline clips are built from the skills list
+  const colours = ["blue", "amber", "teal"];
+  const widths = [3, 2, 4, 2, 3, 2];
+  const build = (offset) => profile.skills.map((s, i) => {
+    const k = (i + offset) % colours.length;
+    return '<div class="clip ' + colours[k] + '" style="flex:' + widths[(i + offset) % widths.length] + '">' + esc(s.name) + "</div>";
+  }).join("");
+  $("trackTop").innerHTML = build(0);
+  $("trackBottom").innerHTML = build(2);
+
+  $("photo").innerHTML = profile.photo
+    ? '<img src="' + esc(profile.photo) + '" alt="Photo of ' + esc(profile.name) + '">'
+    : esc(profile.name.charAt(0));
+  $("aboutText").innerHTML = profile.about.map((p) => "<p>" + esc(p) + "</p>").join("");
+
+  $("skillsList").innerHTML = profile.skills.map((s) =>
+    '<div class="skill"><h3>' + esc(s.name) + "</h3><p>" + esc(s.note) + '</p><div class="bar" role="img" aria-label="' + esc(s.name) + " " + s.level + ' percent"><span style="width:' + s.level + '%"></span></div></div>'
+  ).join("");
+
+  $("projectsList").innerHTML = profile.projects.map((p) =>
+    '<article class="project"><div class="thumb">' +
+    (p.image ? '<img src="' + esc(p.image) + '" alt="' + esc(p.title) + '">' : esc(p.type)) +
+    '</div><div class="body"><h3>' + esc(p.title) + "</h3><p>" + esc(p.desc) + '</p><div class="tags">' +
+    p.tags.map((t) => "<span>" + esc(t) + "</span>").join("") +
+    '</div><a class="link" href="' + esc(p.link) + '" target="_blank" rel="noopener">View this project</a></div></article>'
+  ).join("");
+
+  $("achList").innerHTML = profile.achievements.map((a) =>
+    "<li><strong>" + esc(a.title) + "</strong><small>" + esc(a.detail) + "</small></li>"
+  ).join("");
+
+  $("contactLinks").innerHTML = profile.contact.map((c, i) =>
+    '<a class="btn ' + (i === 0 ? "primary" : "ghost") + '" href="' + esc(c.url) + '" target="_blank" rel="noopener">' + esc(c.label) + "</a>"
+  ).join("");
+})();
+</script>
+</body>
+</html>
